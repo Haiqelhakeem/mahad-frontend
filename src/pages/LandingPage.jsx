@@ -4,7 +4,7 @@ import axios from "axios";
 import { mentorAPI, santriAPI } from "../api/setoran.api";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
-import Modal from "../components/Modal";
+import Modal from "../components/Modal"
 
 export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -64,67 +64,65 @@ export default function LandingPage() {
               Ma&apos;had Tahfidz UIN Sunan Gunung Djati Bandung
             </h3>
 
-              <form
-                onSubmit={e => e.preventDefault()}
-                className="flex flex-col gap-3 mt-5"
-              >
-                <div className="flex gap-2">
-                  <label htmlFor="mentor">Pilih Mentor</label>
-                  <select name="mentor" id="mentor" onChange={handleFilter}>
-                    <option value="">Pilih Mentor</option>
-                    {
-                      mentor?.map(mentor => (
-                        <option value={mentor.id} key={mentor.id}>{mentor.name}</option>
-                      ))
-                    }
-                  </select>
-                </div>
-                {/* pilih santri */}
-                <div className="flex gap-5 md:gap-2">
-                  <label htmlFor="santri" className="text-black">
-                    Pilih Santri
-                  </label>
-                  <select
-                    name="santri"
-                    id="santri"
-                    className="w-1/2 rounded-md p-1"
-                  >
-                    <option value="">Pilih Santri</option>
-                    {filteredSantri?.map((santri) => (
-                      <option value={santri.id} key={santri.id}>
-                        {santri.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                {/* pilih halaman */}
-                <div className="flex gap-8 justify-start">
-                  <label htmlFor="halaman" className="text-black">
-                    Halaman
-                  </label>
-                  <input type="text" name="" id="" className="rounded-md p-1 w-1/2" />
-                </div>
-                {/* pilih juz */}
-                <div className="flex gap-[72px] md:gap-[60px] justify-start">
-                  <label htmlFor="juz" className="text-black">
-                    Juz
-                  </label>
-                  <select name="juz" id="juz" className="w-1/2 p-1 rounded-md">
-                    <option value="">Juz</option>
-                    {[...Array(30)].map((_, i) => (
-                      <option key={i + 1} value={i + 1}>
-                        {i + 1}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+            <form
+              onSubmit={e => e.preventDefault()}
+              className="flex flex-col gap-3 mt-5"
+            >
+              <div className="flex gap-2">
+                <label htmlFor="mentor">Pilih Mentor</label>
+                <select name="mentor" id="mentor" onChange={handleFilter}>
+                  <option value="">Pilih Mentor</option>
+                  {
+                    mentor?.map(mentor => (
+                      <option value={mentor.id} key={mentor.id}>{mentor.name}</option>
+                    ))
+                  }
+                </select>
               </div>
-
-                <button type="submit" className="btn">Submit</button>
-              </form>
-            </div>
+              {/* pilih santri */}
+              <div className="flex gap-5 md:gap-2">
+                <label htmlFor="santri" className="text-black">
+                  Pilih Santri
+                </label>
+                <select
+                  name="santri"
+                  id="santri"
+                  className="w-1/2 rounded-md p-1"
+                >
+                  <option value="">Pilih Santri</option>
+                  {filteredSantri?.map((santri) => (
+                    <option value={santri.id} key={santri.id}>
+                      {santri.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {/* pilih halaman */}
+              <div className="flex gap-8 justify-start">
+                <label htmlFor="halaman" className="text-black">
+                  Halaman
+                </label>
+                <input type="text" name="" id="" className="rounded-md p-1 w-1/2" />
+              </div>
+              {/* pilih juz */}
+              <div className="flex gap-[72px] md:gap-[60px] justify-start">
+                <label htmlFor="juz" className="text-black">
+                  Juz
+                </label>
+                <select name="juz" id="juz" className="w-1/2 p-1 rounded-md">
+                  <option value="">Juz</option>
+                  {[...Array(30)].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>
+                      {i + 1}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button type="submit" className="btn">Submit</button>
+            </form>
           </div>
-      }
+        </div>
+      )}
     </>
   );
 }
