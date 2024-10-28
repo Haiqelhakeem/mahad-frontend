@@ -4,12 +4,14 @@ import axios from "axios";
 import { mentorAPI, santriAPI } from "../api/setoran.api";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
+import Modal from "../components/Modal";
 
 export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [mentor, setMentor] = useState()
   const [santri, setSantri] = useState([])
   const [filteredSantri, setFilteredSantri] = useState([])
+  const [openModal, setOpenModal] = useState(false)
 
   const fetchSantri = () => {
     axios.get(santriAPI)
@@ -41,6 +43,15 @@ export default function LandingPage() {
     setFilteredSantri(filtered)
   }
 
+  const handleModal = () => {
+    setOpenModal(!openModal)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setOpenModal(true)
+  }
+
   return (
     <>
       <Navbar />
@@ -63,7 +74,7 @@ export default function LandingPage() {
               </h3>
 
               <form
-                onSubmit={e => e.preventDefault()}
+                onSubmit={handleSubmit}
                 className="flex flex-col gap-3 mt-5"
               >
                 <div className="flex gap-2">
@@ -93,6 +104,16 @@ export default function LandingPage() {
                 <button type="submit" className="btn">Submit</button>
               </form>
             </div>
+            <Modal open={openModal} onClose={handleModal}>
+              {/* <div className="w-[340px] lg:container mx-auto">
+                <h1 className="text-center text-3xl font-semibold">Verifikasi Data</h1>
+                <p className="text-center mt-2 text-lg">Anda akan diarahkan ke halaman raport milik santri <span className="font-semibold">{data.find((item) => item.nim == search)?.nama}</span>, Lanjutkan?</p>
+              </div>
+              <div className="flex justify-center gap-3 mt-3">
+                <button className="bg-red-600 text-white font-poppins rounded-md py-2.5 px-3" onClick={() => setOpenModal(false)}>Tidak, Kembali</button>
+                <button className="bg-green-600 text-white font-poppins rounded-md py-2.5 px-3" onClick={handleSearch}>Ya, Lanjutkan</button>
+              </div> */}
+            </Modal>
           </div>
       }
     </>
