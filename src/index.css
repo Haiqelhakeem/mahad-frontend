@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .input-box {
+        @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none focus:border-primary
+    }
+
+    .btn-primary {
+        @apply w-full text-sm bg-primary text-white py-3 my-1 rounded hover:bg-opacity-90
+    }
+}
