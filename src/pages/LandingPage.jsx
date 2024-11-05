@@ -1,9 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import heroImage from "../assets/hero.jpg";
 import axios from "axios";
 import { mentorAPI, santriAPI } from "../api/setoran.api";
 import Loader from "../components/Loader";
 import Modal from "../components/Modal";
+import {
+  getHalaman,
+  getLength
+} from '../helper/helper'
 
 export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -13,8 +18,12 @@ export default function LandingPage() {
   const [openModal, setOpenModal] = useState(false)
 
   const [santriName, setSantriName] = useState()
+  const [kategori, setkategori] = useState()
   const [halaman, setHalaman] = useState()
   const [juz, setJuz] = useState()
+
+  const [processedHalaman, setProcessedHalaman] = useState([])
+  const [halamanLength, setHalamanLength] = useState(0)
 
 
   const fetchSantri = () => {
@@ -115,6 +124,21 @@ export default function LandingPage() {
                       {santri.name}
                     </option>
                   ))}
+                </select>
+              </div>
+
+              {/* pilih kategori */}
+              <div className="flex gap-5 md:gap-2">
+                <label htmlFor="kategori" className="text-black text-left">Kategori</label>
+                <select
+                  name="kategori"
+                  id="kategori"
+                  className="input-box text-black"
+                  onChange={(e) => setkategori(e.target.value)}
+                >
+                  <option value="">Pilih Kategori</option>
+                  <option value="Ziyadah">Ziyadah</option>
+                  <option value="Murojaah">Murojaah</option>
                 </select>
               </div>
 
