@@ -1,12 +1,17 @@
 import { useState } from "react"
 import PasswordInput from "../components/PasswordInput"
+import { useNavigate } from "react-router-dom"
 
 const LoginAdmin = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleLogin = (e) => {
-        e.preventDefault()
+    const navigate = useNavigate()
+
+    const handleLogin = () => {
+        if (username === "root" && password === "admin") {
+            navigate("/admin")
+        }
     }
 
     return (
@@ -31,7 +36,7 @@ const LoginAdmin = () => {
                         />
 
 
-                        <button type="submit" className="btn-primary">
+                        <button onClick={handleLogin} type="submit" className="btn-primary">
                             Login
                         </button>
                     </form>

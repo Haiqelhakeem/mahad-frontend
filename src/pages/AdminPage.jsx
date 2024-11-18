@@ -2,7 +2,13 @@ import Sidebar from "../components/Sidebar"
 
 const AdminPage = () => {
     return (
-        <Sidebar />
+        <>
+            <Sidebar />
+            <div>
+                <h1>Admin Page</h1>
+            </div>
+        </>
+
     )
 }
 

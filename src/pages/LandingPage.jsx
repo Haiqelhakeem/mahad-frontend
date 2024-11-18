@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import heroImage from "../assets/hero.jpg";
 import axios from "axios";
-import { mentorAPI, santriAPI } from "../api/setoran.api";
+import { mentorAPI, santriAPI, setoranAPI } from "../api/setoran.api";
 import Loader from "../components/Loader";
 import Modal from "../components/Modal";
 import {
@@ -24,7 +24,6 @@ export default function LandingPage() {
 
   const [processedHalaman, setProcessedHalaman] = useState([])
   const [halamanLength, setHalamanLength] = useState(0)
-
 
   const fetchSantri = () => {
     axios
@@ -68,8 +67,23 @@ export default function LandingPage() {
     handleModal()
   }
 
-  const submitData = (e) => {
-    e.preventDefault()
+  const submitData = async (e) => {
+    const santriId = santri.find(santri => santri.name === santriName)._id
+    const data = {
+      santriId,
+      santriName,
+      kategori,
+      juz,
+      halaman,
+      total: getHalaman(halaman).length,
+    }
+
+    await axios.post(setoranAPI, data, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(() => window.location.reload())
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -95,7 +109,7 @@ export default function LandingPage() {
               onSubmit={handleSubmit}
               className="flex flex-col gap-3 mt-5"
             >
-              <div className="flex gap-2">
+              <div className="flex flex-col gap-2">
                 <label htmlFor="mentor" className="text-black text-left">Pilih Mentor</label>
                 <select name="mentor" id="mentor" onChange={handleFilter} className="input-box text-black">
                   <option value="">Pilih Mentor</option>
@@ -108,7 +122,7 @@ export default function LandingPage() {
               </div>
 
               {/* pilih santri */}
-              <div className="flex gap-5 md:gap-2">
+              <div className="flex flex-col gap-2">
                 <label htmlFor="santri" className="text-black text-left">
                   Pilih Santri
                 </label>
@@ -128,7 +142,7 @@ export default function LandingPage() {
               </div>
 
               {/* pilih kategori */}
-              <div className="flex gap-5 md:gap-2">
+              <div className="flex flex-col gap-2">
                 <label htmlFor="kategori" className="text-black text-left">Kategori</label>
                 <select
                   name="kategori"
@@ -142,16 +156,8 @@ export default function LandingPage() {
                 </select>
               </div>
 
-              {/* input halaman */}
-              <div className="flex justify-center items-center gap-4">
-                <label htmlFor="halaman" className="text-black mb-5 text-left">
-                  Halaman
-                </label>
-                <input type="text" name="" id="" className="input-box text-black" onChange={(e) => setHalaman(e.target.value)} />
-              </div>
-
               {/* pilih juz */}
-              <div className="flex gap-[72px] md:gap-[60px] justify-start">
+              <div className="flex flex-col gap-2">
                 <label htmlFor="juz" className="text-black text-left mt-3">
                   Juz
                 </label>
@@ -163,6 +169,14 @@ export default function LandingPage() {
                     </option>
                   ))}
                 </select>
+              </div>
+
+              {/* input halaman */}
+              <div className="flex flex-col gap-2">
+                <label htmlFor="halaman" className="text-black mb-5 text-left">
+                  Halaman
+                </label>
+                <input type="text" name="" id="" className="input-box text-black" onChange={(e) => setHalaman(e.target.value)} />
               </div>
 
               <button type="submit" className="btn-primary">Submit</button>
