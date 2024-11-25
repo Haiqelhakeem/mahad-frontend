@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Content } from "antd/es/layout/layout";
-import { Layout, Table } from "antd";
+import { Button, Layout, Table } from "antd";
+import { InfoCircleOutlined } from "@ant-design/icons";
 import Sidebar from "../components/Sidebar";
 
 import { santriAPI } from "../api/setoran.api";
@@ -20,8 +21,6 @@ const MahasantriPage = () => {
   useEffect(() => {
     fetchSantri();
   }, []);
-
-  console.log(santri);
 
   const columns = [
     {
@@ -46,9 +45,15 @@ const MahasantriPage = () => {
       width: "30%",
     },
     {
-      title: "Jurusan",
-      dataIndex: "jurusan",
-      key: "jurusan",
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      width: "20%",
+      render: (_, record) => (
+        <Button type="primary">
+          <InfoCircleOutlined />
+        </Button>
+      ),
     },
   ];
 
@@ -58,7 +63,7 @@ const MahasantriPage = () => {
         <Sidebar />
         <Content style={{ margin: "0 16px" }} className="p-5">
           <h1 className="text-2xl font-bold mb-5">Mahasantri</h1>
-          <Table dataSource={santri} columns={columns} bordered></Table>
+          <Table dataSource={santri} columns={columns} bordered ></Table>
         </Content>
       </Layout>
     </>
