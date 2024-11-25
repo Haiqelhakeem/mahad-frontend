@@ -1,46 +1,36 @@
 import React from "react";
 import { Flex, Layout, Menu } from "antd";
 import {
-    HomeOutlined,
-    UserOutlined,
-    SettingOutlined,
+  HomeOutlined,
+  UserOutlined,
+  SettingOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 const { Header, Footer, Sider, Content } = Layout;
-const siderStyle = {
-  textAlign: "center",
-  lineHeight: "250px",
-  color: "#fff",
-  backgroundColor: "#1677ff",
-};
-const layoutStyle = {
-  borderRadius: 8,
-  overflow: "hidden",
-  width: "calc(50% - 8px)",
-  maxWidth: "calc(50% - 8px)",
-};
+
+import { Link } from "react-router-dom";
+
 const Sidebar = () => (
-  <Layout style={{ minHeight: "100vh" }}>
-    {/* Sidebar */}
-    <Sider collapsible>
-      <div
-        className="logo"
-        style={{
-          height: "32px",
-          margin: "16px",
-          background: "rgba(255, 255, 255, 0.2)",
-        }}
-      />
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-        <Menu.Item key="1" icon={<HomeOutlined />}>
-          Dashboard        </Menu.Item>
-        <Menu.Item key="2" icon={<UserOutlined />}>
-          Mahasantri
-        </Menu.Item>
-        <Menu.Item key="3" icon={<SettingOutlined />}>
-          Settings
-        </Menu.Item>
-      </Menu>
-    </Sider>
-  </Layout>
+  <Sider collapsible>
+    <div className="flex items-center justify-center p-7">
+      <img src="/mahadFullColor.svg" alt="Logo Ma'had" width={50} />
+    </div>
+    <Menu theme="dark" mode="inline">
+      <Menu.Item key="1" icon={<HomeOutlined />}>
+        <Link to="/admin">Dashboard</Link>
+      </Menu.Item>
+      <Menu.Item key="2" icon={<UserOutlined />}>
+        <Link to="/mahasantri">Mahasantri</Link>
+      </Menu.Item>
+      <Menu.Item key="3" icon={<SettingOutlined />}>
+        <Link to="/">Settings</Link>
+      </Menu.Item>
+      <Menu.Item key="4" icon={<LogoutOutlined style={{ color: "#dc2626" }} />}>
+        <Link to="/">
+          <p className="text-red-600">Logout</p>
+        </Link>
+      </Menu.Item>
+    </Menu>
+  </Sider>
 );
 export default Sidebar;

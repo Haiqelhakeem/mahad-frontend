@@ -158,7 +158,7 @@ export default function LandingPage() {
 
               {/* pilih juz */}
               <div className="flex flex-col gap-2">
-                <label htmlFor="juz" className="text-black text-left mt-3">
+                <label htmlFor="juz" className="text-black text-left ">
                   Juz
                 </label>
                 <select name="juz" id="juz" className="input-box text-black" onChange={(e) => setJuz(e.target.value)}>
@@ -173,7 +173,7 @@ export default function LandingPage() {
 
               {/* input halaman */}
               <div className="flex flex-col gap-2">
-                <label htmlFor="halaman" className="text-black mb-5 text-left">
+                <label htmlFor="halaman" className="text-black text-left">
                   Halaman
                 </label>
                 <input type="text" name="" id="" className="input-box text-black" onChange={(e) => setHalaman(e.target.value)} />

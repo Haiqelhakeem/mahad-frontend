@@ -1,15 +1,18 @@
-import Sidebar from "../components/Sidebar"
+import { Content } from "antd/es/layout/layout";
+import { Layout } from "antd";
+import Sidebar from "../components/Sidebar";
 
 const AdminPage = () => {
-    return (
-        <>
-            <Sidebar />
-            <div>
-                <h1>Admin Page</h1>
-            </div>
-        </>
+  return (
+    <>
+      <Layout style={{ minHeight: "100vh" }}>
+        <Sidebar />
+        <Content style={{ margin: "0 16px" }}>
+            <h1>Admin</h1>
+        </Content>
+      </Layout>
+    </>
+  );
+};
 
-    )
-}
-
-export default AdminPage
+export default AdminPage;

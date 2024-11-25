@@ -5,6 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import AdminPage from './pages/AdminPage.jsx'
 import LoginAdmin from './pages/LoginAdmin.jsx'
+import MahasantriPage from './pages/MahasantriPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <AdminPage />,
+  },
+  {
+    path: '/mahasantri',
+    element: <MahasantriPage />,
   }
 ])
 
