@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import AdminPage from './pages/AdminPage.jsx'
 import LoginAdmin from './pages/LoginAdmin.jsx'
 import MahasantriPage from './pages/MahasantriPage.jsx'
+import MentorPage from './pages/MentorPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/mahasantri',
     element: <MahasantriPage />,
+  },
+  {
+    path: '/mentor',
+    element: <MentorPage />,
   }
 ])
 

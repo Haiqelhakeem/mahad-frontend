@@ -3,7 +3,7 @@ import { Flex, Layout, Menu } from "antd";
 import {
   HomeOutlined,
   UserOutlined,
-  SettingOutlined,
+  BookOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
 const { Header, Footer, Sider, Content } = Layout;
@@ -22,8 +22,8 @@ const Sidebar = () => (
       <Menu.Item key="2" icon={<UserOutlined />}>
         <Link to="/mahasantri">Mahasantri</Link>
       </Menu.Item>
-      <Menu.Item key="3" icon={<SettingOutlined />}>
-        <Link to="/">Settings</Link>
+      <Menu.Item key="3" icon={<BookOutlined />}>
+        <Link to="/mentor">Mentor</Link>
       </Menu.Item>
       <Menu.Item key="4" icon={<LogoutOutlined style={{ color: "#dc2626" }} />}>
         <Link to="/">

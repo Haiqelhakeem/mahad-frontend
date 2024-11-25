@@ -9,7 +9,6 @@ import { santriAPI } from "../api/setoran.api";
 
 const MahasantriPage = () => {
   const [santri, setSantri] = useState([]);
-  const [santriName, setSantriName] = useState();
 
   const fetchSantri = () => {
     axios
@@ -29,6 +28,7 @@ const MahasantriPage = () => {
       key: "no",
       render: (text, record, index) => index + 1,
       width: "5%",
+      align: "center",
     },
     {
       title: "Nama Mahasantri",
@@ -48,7 +48,8 @@ const MahasantriPage = () => {
       title: "Action",
       dataIndex: "action",
       key: "action",
-      width: "20%",
+      width: "10%",
+      align: "center",
       render: (_, record) => (
         <Button type="primary">
           <InfoCircleOutlined />
