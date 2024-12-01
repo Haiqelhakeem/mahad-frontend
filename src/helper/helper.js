@@ -19,5 +19,3 @@ export const getLength = (input) => {
         return parseInt(end) - parseInt(start) + 1
     }
 }
-
-console.log(getLength("10"));
