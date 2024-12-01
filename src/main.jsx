@@ -7,6 +7,7 @@ import AdminPage from './pages/AdminPage.jsx'
 import LoginAdmin from './pages/LoginAdmin.jsx'
 import MahasantriPage from './pages/MahasantriPage.jsx'
 import MentorPage from './pages/MentorPage.jsx'
+import SetoranPage from './pages/SetoranPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: '/mentor',
     element: <MentorPage />,
+  },
+  {
+    path: '/setoran',
+    element: <SetoranPage />,
   }
 ])
 
