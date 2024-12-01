@@ -1,6 +1,7 @@
 import { Content } from "antd/es/layout/layout";
 import { Layout, Card } from "antd";
 import Sidebar from "../components/Sidebar";
+import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -33,14 +34,30 @@ const AdminPage = () => {
     <>
       <Layout style={{ minHeight: "100vh" }}>
         <Sidebar />
-        <Content style={{ margin: "0 16px"}}>
-          <h1 className="text-2xl font-bold p-5">Dashboard</h1>
+        <Content style={{ margin: "0 32px" }}>
+          <h1 className="text-3xl font-bold p-5">Dashboard</h1>
           <div className="flex gap-10">
-            <Card title="Jumlah Mentor" style={{ width: "300px" }} className="shadow-xl">
-              <p>{mentor?.length}</p>
+            <Card
+              title={
+                <span>
+                  <TeamOutlined style={{ marginRight: 8 }} /> Jumlah Mentor
+                </span>
+              }
+              style={{ width: "300px" }}
+              className="shadow-xl"
+            >
+              <p className="text-2xl font-semibold">{mentor?.length}</p>
             </Card>
-            <Card title="Jumlah Mahasantri" style={{ width: "300px" }} className="shadow-xl">
-              <p>{santri?.length}</p>
+            <Card
+              title={
+                <span>
+                  <UserOutlined style={{ marginRight: 8 }} /> Jumlah Mahasantri
+                </span>
+              }
+              style={{ width: "300px" }}
+              className="shadow-xl"
+            >
+              <p className="text-2xl font-semibold">{santri?.length}</p>
             </Card>
           </div>
         </Content>

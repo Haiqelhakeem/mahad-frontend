@@ -1,3 +1,3 @@
-export const santriAPI = 'http://localhost:5000/api/santri'
-export const mentorAPI = 'http://localhost:5000/api/mentors'
-export const setoranAPI = 'http://localhost:5000/api/setoran'
+export const santriAPI = 'https://mahadapi.vercel.app/api/santri'
+export const mentorAPI = 'https://mahadapi.vercel.app/api/mentors'
+export const setoranAPI = 'https://mahadapi.vercel.app/api/setoran'

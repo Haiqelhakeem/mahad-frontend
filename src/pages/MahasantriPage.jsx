@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Content } from "antd/es/layout/layout";
-import { Button, Layout, Table, Modal } from "antd";
+import { Button, Layout, Table, Modal, Input } from "antd";
 import Sidebar from "../components/Sidebar";
 
 import { santriAPI } from "../api/setoran.api"; // Replace with your API for fetching santri
@@ -12,12 +12,17 @@ const MahasantriPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility
   const [selectedSantri, setSelectedSantri] = useState(null); // Selected santri data
   const [setoranData, setSetoranData] = useState([]); // Setoran data for selected santri
+  const [searchText, setSearchText] = useState(""); // Search input
+  const [filteredSantri, setFilteredSantri] = useState([]); // Filtered data
 
   // Fetch santri data
   const fetchSantri = () => {
     axios
       .get(santriAPI)
-      .then((res) => setSantri(res.data.data))
+      .then((res) => {
+        setSantri(res.data.data);
+        setFilteredSantri(res.data.data); // Initialize filtered data
+      })
       .catch((err) => console.log(err));
   };
 
@@ -55,6 +60,15 @@ const MahasantriPage = () => {
     setSetoranData([]); // Clear setoran data
   };
 
+  // Handle search
+  const handleSearch = (value) => {
+    setSearchText(value);
+    const filteredData = santri.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredSantri(filteredData);
+  };
+
   // Table columns
   const columns = [
     {
@@ -69,7 +83,9 @@ const MahasantriPage = () => {
       title: "Nama Mahasantri",
       dataIndex: "name",
       key: "name",
-      render: (text, record) => <p>{record.name}</p>,
+      sorter: (a, b) => a.name.localeCompare(b.name), // Add sorting
+      onFilter: (value, record) =>
+        record.name.toLowerCase().includes(value.toLowerCase()), // Add filtering logic
       width: "30%",
     },
     {
@@ -93,13 +109,57 @@ const MahasantriPage = () => {
     },
   ];
 
+  // Table Setoran
+  const setoranColumns = [
+    {
+      title: "No",
+      dataIndex: "no",
+      key: "no",
+      render: (text, record, index) => index + 1,
+      width: "5%",
+      align: "center",
+    },
+    {
+      title: "Kategori",
+      dataIndex: "kategori",
+      key: "kategori",
+      render: (text, record) => <p>{record.kategori}</p>,
+      width: "30%",
+    },
+    {
+      title: "Juz",
+      dataIndex: "juz",
+      key: "juz",
+      render: (text, record) => <p>{record.juz}</p>,
+      width: "30%",
+    },
+    {
+      title: "Halaman",
+      dataIndex: "halaman",
+      key: "halaman",
+      render: (text, record) => <p>{record.halaman}</p>,
+      width: "30%",
+    },
+  ];
+
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
         <Sidebar />
-        <Content style={{ margin: "0 16px" }} className="p-5">
-          <h1 className="text-2xl font-bold mb-5">Mahasantri</h1>
-          <Table dataSource={santri} columns={columns} bordered rowKey="_id" />
+        <Content style={{ margin: "0 32px" }} className="p-5">
+          <h1 className="text-3xl font-bold mb-5">Mahasantri</h1>
+          <Input
+            placeholder="Search Mahasantri"
+            value={searchText}
+            onChange={(e) => handleSearch(e.target.value)}
+            style={{ marginBottom: 16, width: 300 }}
+          />
+          <Table
+            dataSource={filteredSantri}
+            columns={columns}
+            bordered
+            rowKey="_id"
+          />
         </Content>
       </Layout>
 
@@ -112,15 +172,12 @@ const MahasantriPage = () => {
           mask={false}
         >
           {setoranData.length > 0 ? (
-            <ul>
-              {setoranData.map((setoran) => (
-                <li key={setoran._id}>
-                  <strong>Kategori:</strong> {setoran.kategori}, <strong>Juz:</strong>{" "}
-                  {setoran.juz}, <strong>Halaman:</strong> {setoran.halaman},{" "}
-                  <strong>Total:</strong> {setoran.total}
-                </li>
-              ))}
-            </ul>
+            <Table
+              dataSource={setoranData}
+              columns={setoranColumns}
+              bordered
+              rowKey="_id"
+            />
           ) : (
             <p>Belum ada setoran untuk santri ini.</p>
           )}
