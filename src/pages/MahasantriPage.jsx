@@ -125,6 +125,11 @@ const MahasantriPage = () => {
       key: "kategori",
       render: (text, record) => <p>{record.kategori}</p>,
       width: "30%",
+      filters: [
+        { text: "Ziyadah", value: "Ziyadah" },
+        { text: "Murojaah", value: "Murojaah" },
+      ],
+      onFilter: (value, record) => record.kategori === value,
     },
     {
       title: "Juz",

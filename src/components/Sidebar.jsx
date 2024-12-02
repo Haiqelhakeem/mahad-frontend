@@ -26,9 +26,9 @@ const Sidebar = () => (
       <Menu.Item key="3" icon={<TeamOutlined />}>
         <Link to="/mentor">Mentor</Link>
       </Menu.Item>
-      <Menu.Item key="3" icon={<BookOutlined />}>
+      {/* <Menu.Item key="3" icon={<BookOutlined />}>
         <Link to="/setoran">Setoran</Link>
-      </Menu.Item>      
+      </Menu.Item>       */}
       <Menu.Item key="4" icon={<LogoutOutlined style={{ color: "#dc2626" }} />}>
         <Link to="/">
           <p className="text-red-600">Logout</p>
